@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            color: white;
+        }
+
+        td a.edit {
+            background-color: #4CAF50; /* تعديل اللون إلى أخضر */
+        }
+
+        td a.delete {
+            background-color: #f44336; /* اللون الأحمر */
+        }
+
+        td a.view {
+            background-color: #007bff; /* اللون الأزرق */
+        }
+
+        td a:hover {
+            opacity: 0.8;
+        }
+
+        td a.delete:hover {
+            background-color: #d32f2f; /* تغييره عند التمرير */
+        }
+
+        td a.edit:hover {
+            background-color: #388e3c; /* تغييره عند التمرير */
+        }
+
+        td a.view:hover {
+            background-color: #0056b3; /* تغييره عند التمرير */
+        }
+
+        .status {
+            background-color: #4CAF50;
+        }
+
+        select {
+            padding: 6px;
+            width: 200px;
+            border-radius: 4px;
+        }
+
+        .btn-add {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-add:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* لون رمادي للزر الرجوع */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* تغيير عند التمرير */
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>إدارة المستخدمين</h1>
+
+    <!-- زر إضافة مستخدم جديد -->
+    <a href="{{ url_for('user.add_user') }}">
+        <button class="btn-add">إضافة مستخدم جديد</button>
+    </a>
+    <a href="{{ url_for('admin.admin_dashboard') }}" class="btn-secondary">الرجوع إلى لوحة التحكم</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>البريد الإلكتروني</th>
+                <th>الاسم</th>
+                <th>الدور</th>
+                <th>المهام</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <select onchange="window.location.href=this.value;">
+                        <option value="" disabled selected>اختر مهمة</option>
+                        {% for task in user.tasks %}
+                            <option value="{{ url_for('task.view_task', task_id=task.id) }}">{{ task.title }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    <!-- زر تعديل -->
+                    <a href="{{ url_for('user.edit_user', email=user.email) }}" class="edit">تعديل</a>
+                    <!-- زر حذف -->
+                    <a href="{{ url_for('user.delete_user', email=user.email) }}" class="delete">حذف</a>
+                    <!-- زر الرجوع إلى لوحة التحكم -->
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

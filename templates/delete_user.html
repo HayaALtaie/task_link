@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حذف مستخدم</title>
+</head>
+<body>
+    <h1>هل أنت متأكد أنك تريد حذف المستخدم: {{ user.name }}؟</h1>
+
+    <form method="POST" action="{{ url_for('user.delete_user', email=user.email) }}">
+        <button type="submit">نعم، حذف المستخدم</button>
+    </form>
+
+    <a href="{{ url_for('admin.manage_users') }}">إلغاء</a>
+</body>
+</html>

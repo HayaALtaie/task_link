@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المهام التي اقترب موعد استحقاقها</title>
+</head>
+<body>
+
+<h2>المهام التي اقترب موعد استحقاقها</h2>
+
+<ul>
+    {% for task in tasks %}
+    <li>
+        <strong>{{ task.title }}</strong><br>
+        الوصف: {{ task.description }}<br>
+        الحالة: {{ task.status }}<br>
+        {% if task.due_date %}
+            تاريخ الاستحقاق: {{ task.due_date.strftime('%Y-%m-%d') }}<br>
+        {% else %}
+            لا يوجد تاريخ استحقاق محدد<br>
+        {% endif %}
+        <a href="{{ url_for('task.update_task', task_id=task.id) }}">تحديث الحالة</a>
+    </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

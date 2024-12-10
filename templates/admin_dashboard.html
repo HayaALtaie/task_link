@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %} <!-- Set page title -->
+{% block content %}
+<div class="container my-5">
+    <!-- Main Title -->
+    <h1 class="text-center text-primary mb-4">Admin Dashboard
+   
+
+
+        <!-- Logout Button -->
+    </h1>
+
+    <!-- Navigation Bar (without login/register buttons) -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-8">
+            <nav class="nav justify-content-center">
+                <a class="nav-link active" href="{{ url_for('admin.manage_users') }}">Manage Users</a>
+                <a class="nav-link" href="{{ url_for('admin.manage_tasks') }}">Manage Tasks</a>
+                <a class="nav-link" href="{{ url_for('admin.tasks_report') }}">Task Report</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Dashboard Cards Section -->
+    <div class="row">
+        <!-- Card 1: Manage Users -->
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">View and manage all users in the system.</p>
+                    <a href="{{ url_for('admin.manage_users') }}" class="btn btn-primary">Manage Users</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Manage Tasks -->
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Tasks</h5>
+                    <p class="card-text">Create, assign, and track tasks for users.</p>
+                    <a href="{{ url_for('admin.manage_tasks') }}" class="btn btn-primary">Manage Tasks</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Task Report -->
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Task Report</h5>
+                    <p class="card-text">View detailed reports of tasks completed and pending.</p>
+                    <a href="{{ url_for('admin.tasks_report') }}" class="btn btn-primary">View Report</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

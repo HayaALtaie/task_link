@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}All Tasks{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">All Tasks</h2>
+
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item">
+            <strong>{{ task.title }}</strong><br>
+            Assigned to: {{ task.assigned_to }}<br>
+            Status: {{ task.status }}<br>
+            {% if task.due_date %}
+                Due Date: {{ task.due_date.strftime('%Y-%m-%d') }}<br>
+            {% else %}
+                No due date set<br>
+            {% endif %}
+            
+            <form method="POST" action="{{ url_for('task.update_task', task_id=task.id) }}" class="mt-3">
+                <div class="form-group">
+                    <label for="status">Update Status:</label>
+                    <select name="status" class="form-control">
+                        <option value="in_progress" {% if task.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                        <option value="completed" {% if task.status == 'completed' %}selected{% endif %}>Completed</option>
+                        <option value="postponed" {% if task.status == 'postponed' %}selected{% endif %}>Postponed</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Update Status</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

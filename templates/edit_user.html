@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل بيانات المستخدم</title>
+</head>
+<body>
+    <h1>تعديل بيانات المستخدم</h1>
+
+    <form method="POST" action="{{ url_for('user.edit_user', email=user.email) }}">
+        <label for="name">الاسم:</label>
+        <input type="text" name="name" value="{{ user.name }}" required><br><br>
+
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" name="email" value="{{ user.email }}" required><br><br>
+
+        <label for="role">الدور:</label>
+        <select name="role" required>
+            <option value="user" {% if user.role == 'user' %}selected{% endif %}>مستخدم</option>
+            <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>مدير</option>
+        </select><br><br>
+
+        <button type="submit">تعديل المستخدم</button>
+    </form>
+
+</body>
+</html>

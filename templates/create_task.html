@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة مهمة جديدة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>إضافة مهمة جديدة</h1>
+
+    <form method="POST">
+        <label for="title">العنوان:</label>
+        <input type="text" name="title" id="title" required><br>
+
+        <label for="description">الوصف:</label>
+        <textarea name="description" id="description" required></textarea><br>
+
+        <label for="assigned_to">المكلف (البريد الإلكتروني):</label>
+        <select name="assigned_to" id="assigned_to" required>
+            <option value="" disabled selected>اختر المستخدم</option>
+            {% for user in users %}
+            <option value="{{ user.email }}">{{ user.email }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="created_by">تم إنشاؤه بواسطة (البريد الإلكتروني للمدير):</label>
+        <select name="created_by" id="created_by" required>
+            <option value="" disabled selected>اختر المدير</option>
+            {% for admin in admins %}
+            <option value="{{ admin.email }}">{{ admin.email }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="due_date">تاريخ الاستحقاق:</label>
+        <input type="date" name="due_date" id="due_date"><br>
+
+        <button type="submit">إضافة المهمة</button>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل المهمة</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">تعديل المهمة</h1>
+        <form action="{{ url_for('task.edit_task', task_id=task.id) }}" method="POST">
+            <div class="form-group">
+                <label for="title">العنوان</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ task.title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">الوصف</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required>{{ task.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="assigned_to">المكلف</label>
+                <input type="text" class="form-control" id="assigned_to" name="assigned_to" value="{{ task.assigned_to }}" required>
+            </div>
+            <div class="form-group">
+                <label for="due_date">تاريخ الاستحقاق</label>
+                <input type="date" class="form-control" id="due_date" name="due_date" value="{{ task.due_date.strftime('%Y-%m-%d') }}" required>
+            </div>
+            <button type="submit" class="btn btn-success">تعديل المهمة</button>
+            <a href="{{ url_for('task.view_all_tasks') }}" class="btn btn-secondary">إلغاء</a>
+        </form>
+    </div>
+</body>
+</html>

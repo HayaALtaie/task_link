@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير المهام</title>
+</head>
+<body>
+    <h1>تقرير المهام</h1>
+
+    <h2>عدد المهام المكتملة: {{ completed_tasks }}</h2>
+    <h2>عدد المهام المتأخرة: {{ overdue_tasks }}</h2>
+
+    <h3>أفضل المؤدين:</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>الاسم</th>
+                <th>نسبة الإنجاز</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for performer in top_performers %}
+                <tr>
+                    <td>{{ performer.assigned_to }}</td>
+                    <td>{{ performer.completion_rate | round(2) }}%</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

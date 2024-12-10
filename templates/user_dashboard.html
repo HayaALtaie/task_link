@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المستخدم</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5">مرحبًا بك، <strong>{{ user_name }}</strong>!</h2>
+    <p>دورك: <strong>{{ user_role }}</strong></p>
+
+    <h3>مهامك:</h3>
+    <ul>
+        {% for task in tasks %}
+        <li>{{ task.title }} - {{ task.description }} - {{ task.status }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/auth/logout" class="btn btn-danger">تسجيل الخروج</a>
+</div>
+
+</body>
+</html>

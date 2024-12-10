@@ -1,0 +1,119 @@
+/* الوضع الفاتح */
+body {
+    background-color: #f4f6fa;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.navbar .nav-link {
+    color: #6c757d;
+}
+
+.navbar .nav-link:hover {
+    color: #1f2429;
+}
+
+.hero-section {
+    background: linear-gradient(45deg, #FFD700, #FF6347);
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+.hero-section .btn {
+    background-color: #1f2429;
+    border-color: #1f2429;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section .btn:hover {
+    background-color: #2a2e35;
+    border-color: #2a2e35;
+}
+
+/* الوضع الداكن */
+body.bg-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+body.bg-dark .navbar {
+    background-color: #222;
+}
+
+body.bg-dark .navbar .nav-link {
+    color: #aaa;
+}
+
+body.bg-dark .navbar .nav-link:hover {
+    color: #fff;
+}
+
+body.bg-dark .hero-section {
+    background: linear-gradient(45deg, #444, #666);
+}
+
+body.bg-dark .hero-section h1,
+body.bg-dark .hero-section p {
+    color: #fff;
+}
+
+body.bg-dark .hero-section .btn {
+    background-color: #444;
+    border-color: #444;
+}
+
+body.bg-dark .hero-section .btn:hover {
+    background-color: #555;
+    border-color: #555;
+}
+
+#notification-list li {
+    display: block !important;
+    background-color: yellow;
+  }
+
+  #notification-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;  /* توسيط القائمة */
+    transform: translateX(-50%); /* توسيط القائمة */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    min-width: 200px; /* تحديد عرض أدنى للقائمة */
+  }
+  
+  #notification-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #notification-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
